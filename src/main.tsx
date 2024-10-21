@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { ClinicProvider } from './contexts/clinicProvider.tsx';
 import App from './App';
 import './index.css';
 
@@ -10,7 +11,9 @@ if (rootElement) {
   root.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App />
+        <ClinicProvider>
+          <App />
+        </ClinicProvider>
       </BrowserRouter>
     </React.StrictMode>
   );
