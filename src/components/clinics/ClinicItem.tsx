@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { TableCell, TableRow } from "@/components/ui/table";
 
 export type ClinicInfoProps = {
     ph: string;
@@ -29,23 +30,29 @@ const ClinicItem: React.FC<ClinicInfoProps> = ({
     payment,
     nextBillingDate
 }) => {
+    const [imgSrc, setImgSrc] = useState(image);
+
+    const handleImageError = () => {
+        setImgSrc('src/assets/default-image.webp');
+    };
+
     return (
-        <tr>
-            <td>{ph}</td>
-            <td>
-                <img src={image} alt={`Logo of ${name}`} onError={(e) => (e.currentTarget.src = 'assets/default-image.webp')} />
+        <TableRow className='text-center'>
+            <TableCell className="font-bold min-w-1 max-w-1">{ph}</TableCell>
+            <TableCell className='grid grid-cols-2 items-center justify-center w-40'>
+                <img src={imgSrc} alt={`Logo of ${name}`} className="w-16 h-12 object-cover" onError={handleImageError} />
                 {name}
-            </td>
-            <td>{contact}</td>
-            <td>{address}</td>
-            <td>{phone}</td>
-            <td>{email}</td>
-            <td>{status}</td>
-            <td>{startDate}</td>
-            <td>{billingCycle}</td>
-            <td>{payment}</td>
-            <td>{nextBillingDate}</td>
-        </tr>
+            </TableCell>
+            <TableCell>{contact}</TableCell>
+            <TableCell>{address}</TableCell>
+            <TableCell>{phone}</TableCell>
+            <TableCell>{email}</TableCell>
+            <TableCell>{status}</TableCell>
+            <TableCell>{startDate}</TableCell>
+            <TableCell>{billingCycle}</TableCell>
+            <TableCell>{payment}</TableCell>
+            <TableCell>{nextBillingDate}</TableCell>
+        </TableRow>
     );
 };
 
